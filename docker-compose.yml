@@ -8,13 +8,16 @@ services:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     image: "pings"
+    working_dir: /packages/pings
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /tmp/docker_logs:/var/log
       - .:/packages/pings
-      # - /your_data_storage_directory_here:/packages/pings/data/
+      - /home/li0/lio_ws/codex_dataset:/packages/pings/data
+      - /home/li0/lio_ws/codex_outputs:/packages/pings/pings_experiments
     environment:
       - DISPLAY
+      - QT_X11_NO_MITSHM=1
     deploy:
       resources:
         reservations:

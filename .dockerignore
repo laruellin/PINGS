@@ -1,0 +1,16 @@
+.git
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.vscode/
+.idea/
+data/
+experiments/
+pings_experiments/
+tmp*/
+recording/
+screenshots/
+*.png
+*.pkl
+q.log
