@@ -524,7 +524,7 @@ class Mapper:
         # print("time for pool updating         (ms):", (T4-T3)*1e3) # mainly spent here
         # print("time for pool transforming     (ms):", (T3_1-T3_0)*1e3) # mainly spent here
         # print("time for filtering             (ms):", (T3_2-T3_1)*1e3)
-    
+
     def dynamic_filter(self, points_torch, type_2_on: bool = True):
 
         if type_2_on:
@@ -859,6 +859,7 @@ class Mapper:
 
             if not self.config.weighted_first:
                 sdf_pred = torch.sum(sdf_pred * weight_knn, dim=1).squeeze(1)  # N
+
 
             if self.config.semantic_on:
                 sem_pred = self.sem_mlp.sem_label_prob(geo_feature)
@@ -1509,6 +1510,7 @@ class Mapper:
 
                     if not self.config.weighted_first:
                         sdf_pred = torch.sum(sdf_pred * weight_knn, dim=1).squeeze(1)  # N
+
                     
                     if self.config.color_on:
                         surface_color_pred = self.color_mlp.regress_color(color_feature[valid_color_mask])  # [N, K, C]

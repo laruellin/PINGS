@@ -723,7 +723,7 @@ class NeuralPoints(nn.Module):
             nn_counts,
             queried_certainty,
         )
-    
+
     def get_neural_points_o3d(
         self,
         query_global: bool = True,
