@@ -12,7 +12,7 @@ build:
 	COMPOSE_DOCKER_CLI_BUILD=1 docker --context $(MACHINE) compose build mpings --build-arg USER_ID=$(USER_ID) --build-arg GROUP_ID=$(GROUP_ID)
 
 run:
-	docker --context $(MACHINE) compose run -rm -e CUDA_VISIBLE_DEVICES=$(GPUS) mpings bash
+	docker --context $(MACHINE) compose run --rm -e CUDA_VISIBLE_DEVICES=$(GPUS) mpings bash
 	
 up:
 	docker --context $(MACHINE) compose up -d mpings
