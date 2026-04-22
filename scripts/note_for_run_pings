@@ -1,0 +1,27 @@
+note:
+ 執行環境相關
+    GPU_ID-指定要用哪張 GPU。
+    PYTHON_BIN-指定要用哪個 Python 執行。
+    PINGS_MAIN-指定主程式 pings.py 的位置。
+ 資料與設定檔相關
+    CONFIG-指定要用哪個 yaml 設定檔。
+    DATASET-指定資料集類型。
+    SEQ-指定資料序列編號。
+    INPUT_PATH-指定資料根目錄。
+ 測試範圍相關
+    START_FRAME-起始 frame。
+    END_FRAME-結束 frame。
+    STEP_FRAME-每隔幾幀取一次。
+實驗紀錄相關
+    SEED-隨機種子，讓結果比較可重現。
+    TAG-實驗的名稱。
+    OUT_ROOT-輸出結果資料夾
+功能開關相關
+    GS_MODE-是否啟用 Gaussian Splatting 相關模式。
+    VIS_MODE-是否開視覺化。
+    SAVE_MAP-是否儲存 map 結果。
+    SAVE_MESH-是否儲存 mesh。
+    SAVE_MERGED_PC-是否儲存 merged point cloud。
+額外參數
+    EXTRA_ARGS-這表示你在執行腳本時，如果在最後再多加參數，會一起收進去。
+    

@@ -1,6 +1,6 @@
 setting: 
   name: "test_kitti_gs"
-  output_root: "./pings_experiments"
+  output_root: "./pings_experiments/MPINGS"
   deskew: False
   kitti_correct: True
   correct_deg: 0.195

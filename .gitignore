@@ -200,6 +200,10 @@ recording
 *run.sh
 run*.sh
 
+exp_logs/
+**/exp_logs/
+log/
+results/
 
 q.log
 q.log/

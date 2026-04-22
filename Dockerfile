@@ -29,6 +29,8 @@ RUN apt-get update && \
 
 WORKDIR /
 
+# RUN apt-get update && apt-get install -y time && rm -rf /var/lib/apt/lists/*
+
 COPY submodules/ ./submodules/
 COPY requirements.txt .
 
