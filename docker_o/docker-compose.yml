@@ -1,5 +1,5 @@
 services:
-  mpings:
+  pings:
     build:
       context: .
       ssh: ["default"]
@@ -7,18 +7,14 @@ services:
     shm_size: '128gb'
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    command: bash -lc "sleep infinity"
-    image: "pings:1.0.1"
-    working_dir: /packages/pings
+    image: "pings"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /tmp/docker_logs:/var/log
       - .:/packages/pings
-      - /home/li0/lio_ws/codex_dataset:/packages/pings/data
-      - /home/li0/lio_ws/codex_outputs:/packages/pings/pings_experiments
+      # - /your_data_storage_directory_here:/packages/pings/data/
     environment:
       - DISPLAY
-      - QT_X11_NO_MITSHM=1
     deploy:
       resources:
         reservations:

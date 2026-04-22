@@ -4,36 +4,46 @@ ARG CUDNN="9"
 
 FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel
 ARG DEBIAN_FRONTEND=noninteractive
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
 # Set NVIDIA environment variables
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES compute,utility,graphics
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
+ENV QT_X11_NO_MITSHM=1
+ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 6.2 7.0 7.2 7.5 8.0 8.6"
 
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y \
-        git \
-        python3-pip \
-        python3-dev \
-        python3-opencv \
-        libglib2.0-0
-
-ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 6.2 7.0 7.2 7.5 8.0 8.6"
-
-RUN apt-get install libglm-dev
+    build-essential \
+    cmake \
+    git \
+    libgl1-mesa-glx \
+        libglfw3-dev \
+        libglib2.0-0 \
+        libglm-dev \
+        pkg-config \
+        python3-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
 
-COPY submodules /submodules
+COPY submodules/ ./submodules/
 COPY requirements.txt .
-RUN pip install -r requirements.txt
 
-ARG USER_ID
-ARG GROUP_ID
+RUN pip install --no-cache-dir --upgrade pip setuptools==69.5.1 wheel
+RUN pip install --no-cache-dir mmengine timm && \
+    pip install --no-cache-dir mmcv>=2.1.0 -f https://download.openmmlab.com/mmcv/dist/cu118/torch2.4/index.html
+   
+RUN pip install --upgrade pip && \
+    python -c "import torch; print('Torch:', torch.__version__, 'CUDA:', torch.version.cuda)" && \
+    pip install -r requirements.txt --no-build-isolation
 
-# Switch to same user as host system
-RUN addgroup --gid $GROUP_ID user
-RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+RUN if ! getent group "${GROUP_ID}" >/dev/null; then addgroup --gid "${GROUP_ID}" user; fi && \
+    if ! id -u "${USER_ID}" >/dev/null 2>&1; then \
+    adduser --disabled-password --gecos '' --uid "${USER_ID}" --gid "${GROUP_ID}" user; \
+    fi
 USER user
 
 WORKDIR /packages/pings
