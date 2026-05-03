@@ -1,0 +1,2 @@
+exp_name,ATE,RPE_trans,RPE_rot,latency_avg_ms,latency_max_ms,latency_p95_ms,FPS,gpu_vram_avg_mb,gpu_vram_peak_mb,point_count_init,point_count_final,point_pruned,mesh_size_mb,model_size_mb,psnr,ssim,lpips,success,notes
+4090_gs_on_mid_s06_test_kitti_gs_kitti_06_2026-04-23_09-38-21,0.8559795000478045,0.5345576015341994,0.003660992649215246,2245.7583225607113,4040.9584045410156,3014.9619579315186,0.445283889167449,8640.1599,10793.0,1239753,1135709,706494,0.0,0.0,,,,Warning/Fail,Crashes or NaNs detected in log; 

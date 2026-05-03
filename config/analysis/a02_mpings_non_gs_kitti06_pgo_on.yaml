@@ -1,0 +1,37 @@
+python_bin: "python3"
+workdir: "."
+pings_main: "./pings.py"
+chart_script: "./tool/make_exp_log_charts.py"
+analyze_script: "./tool/analyze_pings.py"
+
+config: "./config/run_pin_slam.yaml"
+dataset: "kitti"
+seq: "06"
+input_path: "./data/KITTI/pin-slam/"
+output_path: ""
+tag: "2080_a02_mpings_non_gs_kitti06_pgo_on"
+
+start_frame: 0
+end_frame: 1101
+step_frame: 1
+seed: 42
+gpu_id: "0"
+
+gs_mode: "off"
+vis_mode: "off"
+save_map: "on"
+save_mesh: "on"
+save_merged_pc: "off"
+
+profile_root: "./exp_logs/2080"
+chart_smooth: 9
+
+run_charts: "on"
+run_analysis: "on"
+transfer_mode: "copy"
+zip_profile: "off"
+zip_run: "off"
+
+analysis_dir_name: "analysis"
+analysis_output_name: "pings_analysis_summary"
+extra_args: ""

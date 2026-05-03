@@ -1,0 +1,37 @@
+python_bin: "python3"
+workdir: "."
+pings_main: "./pings.py"
+chart_script: "./tool/make_exp_log_charts.py"
+analyze_script: "./tool/analyze_pings.py"
+
+config: "./config/analysis/run_kitti_gs_safe_pgo_off.yaml"
+dataset: "kitti"
+seq: "00"
+input_path: "./data/KITTI/pin-slam/"
+output_path: ""
+tag: "2080_a03_mpings_gs_safe_kitti00_short"
+
+start_frame: 0
+end_frame: 200
+step_frame: 1
+seed: 42
+gpu_id: "0"
+
+gs_mode: "on"
+vis_mode: "off"
+save_map: "on"
+save_mesh: "on"
+save_merged_pc: "off"
+
+profile_root: "./exp_logs/2080"
+chart_smooth: 9
+
+run_charts: "on"
+run_analysis: "on"
+transfer_mode: "copy"
+zip_profile: "off"
+zip_run: "off"
+
+analysis_dir_name: "analysis"
+analysis_output_name: "pings_analysis_summary"
+extra_args: ""
